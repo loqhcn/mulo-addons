@@ -1,7 +1,7 @@
 {
     "name": "mulo/mulo-addons",
     "description": "for tp51 plugin system",
-    "version": "1.0.1",
+    "license": "Apache-2.0",
     "require": {
         "php": ">=5.6.0"
     },
