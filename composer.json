@@ -1,0 +1,23 @@
+{
+    "name": "mulo/mulo-addons",
+    "description": "for tp51 plugin system",
+    "version": "1.0.1",
+    "require": {
+        "php": ">=5.6.0"
+    },
+    "authors": [
+        {
+            "name": "mulo",
+            "email": "0@loqh.cn"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "mulo\\addons\\": "src"
+        },
+        "files": [
+            "src/init.php"
+        ]
+    }
+
+}
