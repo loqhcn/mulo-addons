@@ -29,12 +29,15 @@ class Addons
         $this->addonsName = $addonsName;
         $this->addonsPath = ADDONS_PATH . $this->addonsName . DIRECTORY_SEPARATOR;
         //插件目录定义
-
+        $commonJs = $this->addonsPath .'common.php';
+        if(is_file($commonJs)){
+            __require_file($commonJs);
+        }
 
         $route = app('mulo\addons\AddonsRoute');
         $app = $route->getApp();
-        $routeFiles = $this->routeFiles();
         //加载插件路由
+        $routeFiles = $this->routeFiles();
         Route::group("addons/{$addonsName}", function () use ($routeFiles) {
 
             foreach($routeFiles as $routeFile){

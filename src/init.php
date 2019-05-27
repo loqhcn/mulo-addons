@@ -4,14 +4,14 @@ use think\facade\Route;
 use think\facade\Env;
 use think\Loader;
 use think\Container;
-use  think\facade\Request;
+use think\facade\Request;
+use think\Exception;
 use mulo\addons\Addons;
+
 
 //tp5.1取消了的一些常量
 // defined('DS') or define('DS', DIRECTORY_SEPARATOR);
 define('ADDONS_PATH',Env::get('ROOT_PATH')  . 'addons' . DIRECTORY_SEPARATOR);
-
-
 
 // 如果插件目录不存在则创建
 if (!is_dir(ADDONS_PATH)) {
@@ -24,17 +24,22 @@ Loader::addNamespace('addons', ADDONS_PATH);
 $request = Request::instance();
 $serverParam = $request->server();
 $pathInfo  = $request->pathinfo();
-// echo $pathInfo;
 preg_match('/^(addons)\/([\w]+)(.*)/',$pathInfo, $matches);
 
-// var_dump($matches);
+
+
 //加载addons 
 if($matches && $matches[0]){
     $addonsName = $matches[2];
     if($addonsName){
-        // $addons   =  new Addons();
+        //通过容器获得统一的 addons类
         $addons =  Container::get('mulo\addons\Addons');
+
+
         $addons->initAddons($addonsName);
+
+        
+
     }
 }
 
